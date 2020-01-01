@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="gip.RemoveProductController"
+            prefHeight="270.0" prefWidth="300.0">
+    <Label alignment="CENTER" layoutX="45.0" layoutY="30.0" style="&#10;" prefWidth="210.0"
+           text="Remove a product" textAlignment="CENTER" textFill="#9f9f9f">
+        <font>
+            <Font size="18.0"/>
+        </font>
+    </Label>
+    <TextField layoutX="65.0" layoutY="80.0" prefHeight="25.0" prefWidth="170.0" promptText="Product ID"/>
+    <Label layoutX="45.0" layoutY="110.0" prefHeight="25.0" prefWidth="210.0" text="or" textFill="#9f9f9f"
+           alignment="CENTER" />
+    <ChoiceBox layoutX="65.0" layoutY="140.0" prefHeight="25.0" prefWidth="170.0"/>
+    <Button layoutX="65.0" layoutY="190.0" prefHeight="25.0" prefWidth="170.0" text="Remove"/>
+    <Label layoutX="45.0" layoutY="225.0" prefHeight="25.0" prefWidth="210.0" text="Done" textFill="#9f9f9f"
+           alignment="CENTER" wrapText="true"/>
+</AnchorPane>
