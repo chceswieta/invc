@@ -13,16 +13,18 @@
       fx:controller="gip.LoginController">
     <children>
         <AnchorPane>
-            <Label alignment="CENTER" layoutX="45.0" layoutY="30.0" style="&#10;" prefWidth="210.0"
+            <Label alignment="CENTER" layoutX="45.0" layoutY="30.0" style="&#10;" prefWidth="210.0" focusTraversable="true"
                    text="Invoicer" textAlignment="CENTER" textFill="#9f9f9f">
                 <font>
                     <Font size="18.0"/>
                 </font>
             </Label>
-            <TextField layoutX="65.0" layoutY="180.0" prefHeight="25.0" prefWidth="170.0" promptText="Login"/>
-            <PasswordField layoutX="65.0" layoutY="210.0" prefHeight="25.0" prefWidth="170.0"  promptText="Password"/>
+            <TextField fx:id="user" layoutX="65.0" layoutY="180.0" prefHeight="25.0" prefWidth="170.0" promptText="Login"/>
+            <PasswordField fx:id="password" layoutX="65.0" layoutY="210.0" prefHeight="25.0" prefWidth="170.0"  promptText="Password"/>
             <Button layoutX="65.0" layoutY="260.0" prefHeight="25.0" prefWidth="170.0" mnemonicParsing="false"
                     text="Sign in" onAction="#login"/>
+            <Label fx:id="incorrectInfo" layoutX="45.0" layoutY="310.0" prefWidth="210.0" textFill="#b54a4a"
+                   wrapText="true" textAlignment="CENTER"/>
         </AnchorPane>
     </children>
 </VBox>

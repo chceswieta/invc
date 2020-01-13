@@ -12,8 +12,7 @@
             fx:controller="gip.AddClientController"
             prefHeight="350.0" prefWidth="300.0">
     <Label alignment="CENTER" layoutX="65.0" layoutY="30.0" style="&#10;" prefWidth="170.0" text="New client"
-           textAlignment="CENTER"
-           textFill="#9f9f9f">
+           textAlignment="CENTER" textFill="#9f9f9f" focusTraversable="true">
         <font>
             <Font size="18.0"/>
         </font>

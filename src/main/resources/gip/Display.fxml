@@ -10,7 +10,7 @@
             fx:controller="gip.DisplayController"
             prefHeight="700.0" prefWidth="500.0">
     <Label alignment="CENTER" layoutY="30.0" style="&#10;" prefWidth="500.0"
-           text="Display an invoice" textAlignment="CENTER" textFill="#9f9f9f">
+           text="Display an invoice" textAlignment="CENTER" textFill="#9f9f9f" focusTraversable="true">
         <font>
             <Font size="18.0"/>
         </font>
