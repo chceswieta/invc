@@ -61,7 +61,7 @@ public class MainController {
             if (moreThanClientAccess) {
                 if (grants.contains("GRANT SELECT, INSERT, UPDATE, DELETE ON `invc`.`client`") && grants.contains("GRANT SELECT, INSERT, UPDATE, DELETE ON `invc`.`product`"))
                     grantAccess("adminAccess");
-                else if (grants.contains("GRANT UPDATE ON `invc`.`product`"))
+                else if (grants.contains("GRANT SELECT, UPDATE ON `invc`.`product`") && grants.contains("GRANT SELECT ON `invc`.`client`"))
                     grantAccess("employeeAccess");
             }
             else if (grants.contains("GRANT SELECT ON `invc`.`invoiceElement`")) grantAccess("clientAccess");

@@ -12,7 +12,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="gip.AddProductController"
+            fx:controller="gip.AddItemController"
             prefHeight="400.0" prefWidth="300.0">
     <Label alignment="CENTER" layoutX="45.0" layoutY="30.0" style="&#10;" prefWidth="210.0"
            text="Add an invoice item" textAlignment="CENTER" textFill="#9f9f9f" focusTraversable="true">
@@ -20,17 +20,17 @@
             <Font size="18.0"/>
         </font>
     </Label>
-    <TextField layoutX="65.0" layoutY="80.0" prefHeight="25.0" prefWidth="170.0" promptText="NIP"/>
-    <TextField layoutX="65.0" layoutY="110.0" prefHeight="25.0" prefWidth="170.0" promptText="Invoice ID"/>
+    <TextField fx:id="nip" layoutX="65.0" layoutY="80.0" prefHeight="25.0" prefWidth="170.0" promptText="NIP"/>
+    <TextField fx:id="invoiceId" layoutX="65.0" layoutY="110.0" prefHeight="25.0" prefWidth="170.0" promptText="Invoice ID"/>
     <Label layoutX="45.0" layoutY="160.0" prefHeight="25.0" prefWidth="210.0" text="Product:" textFill="#9f9f9f"
            alignment="CENTER"/>
-    <ChoiceBox layoutX="65.0" layoutY="190.0" prefHeight="25.0" prefWidth="170.0"/>
+    <ChoiceBox fx:id="product" layoutX="65.0" layoutY="190.0" prefHeight="25.0" prefWidth="170.0"/>
     <Label layoutX="45.0" layoutY="220.0" prefHeight="25.0" prefWidth="210.0" text="Quantity:" textFill="#9f9f9f"
            alignment="CENTER"/>
     <Spinner fx:id="quantity" layoutX="65.0" layoutY="250.0" prefHeight="25.0" prefWidth="170.0"
              promptText="Quantity"
              min="1" max="100" initialValue="1" editable="true"/>
-    <Button layoutX="65.0" layoutY="300.0" prefHeight="25.0" prefWidth="170.0" text="Add"/>
+    <Button layoutX="65.0" layoutY="300.0" prefHeight="25.0" prefWidth="170.0" text="Add" onAction="#addItem"/>
     <Text layoutX="45.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" fill="#9f9f9f"
           text="${'Note:\n Leave the ID field empty if you want to create a new invoice.'}"
           textAlignment="CENTER" wrappingWidth="210.0"/>

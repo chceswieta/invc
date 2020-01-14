@@ -47,6 +47,10 @@ public class App extends Application {
         return statement.executeQuery(query);
     }
 
+    public static PreparedStatement prepareStatement(String statement) throws SQLException {
+        return connection.prepareStatement(statement);
+    }
+
     public static void main(String[] args) {
         launch();
     }

@@ -17,12 +17,12 @@
             <Font size="18.0"/>
         </font>
     </Label>
-    <TextField layoutX="65.0" layoutY="80.0" prefHeight="25.0" prefWidth="170.0" promptText="First name"/>
-    <TextField layoutX="65.0" layoutY="110.0" prefHeight="25.0" prefWidth="170.0" promptText="Last name"/>
-    <DatePicker layoutX="65.0" layoutY="160.0" prefHeight="25.0" prefWidth="170.0" promptText="Date of birth"/>
-    <TextField layoutX="65.0" layoutY="190.0" prefHeight="25.0" prefWidth="170.0" promptText="NIP / PESEL"/>
-    <Button layoutX="65.0" layoutY="240.0" prefHeight="25.0" prefWidth="170.0" text="Add"/>
-    <Label layoutX="45.0" layoutY="275.0" prefHeight="25.0" prefWidth="210.0" text="Done" textFill="#9f9f9f"
+    <TextField fx:id="name" layoutX="65.0" layoutY="80.0" prefHeight="25.0" prefWidth="170.0" promptText="First name"/>
+    <TextField fx:id="surname" layoutX="65.0" layoutY="110.0" prefHeight="25.0" prefWidth="170.0" promptText="Last name"/>
+    <DatePicker fx:id="date" layoutX="65.0" layoutY="160.0" prefHeight="25.0" prefWidth="170.0" promptText="Date of birth"/>
+    <TextField fx:id="nip" layoutX="65.0" layoutY="190.0" prefHeight="25.0" prefWidth="170.0" promptText="NIP / PESEL"/>
+    <Button layoutX="65.0" layoutY="240.0" prefHeight="25.0" prefWidth="170.0" text="Add" onAction="#addClient"/>
+    <Label fx:id="info" layoutX="45.0" layoutY="275.0" prefHeight="25.0" prefWidth="210.0" textFill="#9f9f9f"
            alignment="CENTER" wrapText="true"/>
 
 </AnchorPane>

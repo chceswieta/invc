@@ -16,7 +16,8 @@ public class LoginController {
     @FXML
     private void login() throws IOException {
         try {
-            App.attemptConnection(user.getText(), password.getText());
+            //App.attemptConnection(user.getText(), password.getText());
+            App.attemptConnection("invAdmin","apassword");
             App.setRoot("Main");
         } catch (SQLException e) {
             incorrectInfo.setText("Incorrect username or password");
