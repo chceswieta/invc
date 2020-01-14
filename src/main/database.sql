@@ -27,9 +27,9 @@ CREATE TABLE product (
 );
 
 ALTER TABLE invoice
-ADD FOREIGN KEY (clientId) REFERENCES client(clientId);
+ADD FOREIGN KEY (clientId) REFERENCES client(clientId) ON DELETE CASCADE;
 ALTER TABLE invoiceElement
-ADD FOREIGN KEY (invoiceId) REFERENCES invoice(invoiceId);
+ADD FOREIGN KEY (invoiceId) REFERENCES invoice(invoiceId) ON DELETE CASCADE;
 ALTER TABLE invoiceElement
 ADD FOREIGN KEY (productId) REFERENCES product(productId);
 

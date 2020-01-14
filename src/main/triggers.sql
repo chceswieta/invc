@@ -1,8 +1,5 @@
 USE invc;
 
-#we have to manually set:
-#SET FOREIGN_KEY_CHECKS = 0;
-
 DROP TRIGGER IF EXISTS RightAgeTrigger;
 DROP TRIGGER IF EXISTS DestroyLeftoverInvoicesTrigger;
 DROP TRIGGER IF EXISTS NumberOfProductInsertTrigger;
@@ -17,11 +14,6 @@ BEGIN
 	IF(CURDATE() - DATE(new.birth) < 180000) THEN SIGNAL SQLSTATE '45000'
 		SET MESSAGE_TEXT = 'Client is definitely too young.';
 	END IF;
-END $$
-
-CREATE TRIGGER DestroyLeftoverInvoicesTrigger BEFORE DELETE ON client FOR EACH ROW
-BEGIN
-	DELETE FROM invoice WHERE old.clientId = clientId;
 END $$
 
 CREATE TRIGGER NumberOfProductInsertTrigger BEFORE INSERT ON product FOR EACH ROW
