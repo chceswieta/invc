@@ -7,7 +7,7 @@
 <AnchorPane prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="gip.RemoveInvoiceController">
     <Label alignment="CENTER" layoutX="45.0" layoutY="30.0" prefWidth="210.0" style="&#10;" text="Remove an invoice"
-           textAlignment="CENTER" textFill="#9f9f9f" focusTraversable="true">
+           textAlignment="CENTER" textFill="dimgray" focusTraversable="true">
         <font>
             <Font size="18.0"/>
         </font>
@@ -15,5 +15,5 @@
     <TextField fx:id="invoiceID" layoutX="65.0" layoutY="80.0" promptText="Invoice ID"/>
     <Button layoutX="65.0" layoutY="120.0" prefHeight="25.0" prefWidth="170.0" text="Remove" onAction="#removeInvoice"/>
     <Label fx:id="info" alignment="CENTER" layoutX="45.0" layoutY="155.0" prefHeight="25.0" prefWidth="210.0"
-           textFill="#9f9f9f" wrapText="true"/>
+           textFill="dimgray" wrapText="true"/>
 </AnchorPane>

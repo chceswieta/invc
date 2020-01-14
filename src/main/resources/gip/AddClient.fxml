@@ -12,7 +12,7 @@
             fx:controller="gip.AddClientController"
             prefHeight="350.0" prefWidth="300.0">
     <Label alignment="CENTER" layoutX="65.0" layoutY="30.0" style="&#10;" prefWidth="170.0" text="New client"
-           textAlignment="CENTER" textFill="#9f9f9f" focusTraversable="true">
+           textAlignment="CENTER" textFill="dimgray" focusTraversable="true">
         <font>
             <Font size="18.0"/>
         </font>
@@ -22,7 +22,7 @@
     <DatePicker fx:id="date" layoutX="65.0" layoutY="160.0" prefHeight="25.0" prefWidth="170.0" promptText="Date of birth" editable="false"/>
     <TextField fx:id="nip" layoutX="65.0" layoutY="190.0" prefHeight="25.0" prefWidth="170.0" promptText="NIP / PESEL"/>
     <Button layoutX="65.0" layoutY="240.0" prefHeight="25.0" prefWidth="170.0" text="Add" onAction="#addClient"/>
-    <Label fx:id="info" layoutX="45.0" layoutY="275.0" prefWidth="210.0" textFill="#9f9f9f" textAlignment="CENTER"
+    <Label fx:id="info" layoutX="45.0" layoutY="275.0" prefWidth="210.0" textFill="dimgray" textAlignment="CENTER"
            alignment="CENTER" wrapText="true"/>
 
 </AnchorPane>

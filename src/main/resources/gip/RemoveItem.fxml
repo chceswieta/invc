@@ -9,17 +9,17 @@
             fx:controller="gip.RemoveItemController"
             prefHeight="315.0" prefWidth="300.0">
     <Label alignment="CENTER" layoutX="45.0" layoutY="30.0" style="&#10;" prefWidth="210.0"
-           text="Remove an item" textAlignment="CENTER" textFill="#9f9f9f" focusTraversable="true">
+           text="Remove an item" textAlignment="CENTER" textFill="dimgray" focusTraversable="true">
         <font>
             <Font size="18.0"/>
         </font>
     </Label>
     <TextField fx:id="invoiceId" layoutX="65.0" layoutY="80.0" prefHeight="25.0" prefWidth="170.0" promptText="Invoice ID"/>
     <TextField fx:id="productId" layoutX="65.0" layoutY="130.0" prefHeight="25.0" prefWidth="170.0" promptText="Product ID"/>
-    <Label layoutX="45.0" layoutY="160.0" prefHeight="25.0" prefWidth="210.0" text="or" textFill="#9f9f9f"
+    <Label layoutX="45.0" layoutY="160.0" prefHeight="25.0" prefWidth="210.0" text="or" textFill="dimgray"
            alignment="CENTER" />
     <ChoiceBox layoutX="65.0" layoutY="190.0" prefHeight="25.0" prefWidth="170.0"/>
     <Button layoutX="65.0" layoutY="240.0" prefHeight="25.0" prefWidth="170.0" text="Remove" onAction="#removeItem"/>
-    <Label layoutX="45.0" layoutY="275.0" prefHeight="25.0" prefWidth="210.0" text="Done" textFill="#9f9f9f"
+    <Label layoutX="45.0" layoutY="275.0" prefHeight="25.0" prefWidth="210.0" text="Done" textFill="dimgray"
            alignment="CENTER" wrapText="true"/>
 </AnchorPane>
