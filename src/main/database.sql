@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS invc;
 
 CREATE DATABASE invc;
 USE invc;
@@ -26,9 +27,9 @@ CREATE TABLE product (
 );
 
 ALTER TABLE invoice
-ADD FOREIGN KEY (clientId) REFERENCES client(clientId);
+ADD FOREIGN KEY (clientId) REFERENCES client(clientId) ON DELETE CASCADE;
 ALTER TABLE invoiceElement
-ADD FOREIGN KEY (invoiceId) REFERENCES invoice(invoiceId);
+ADD FOREIGN KEY (invoiceId) REFERENCES invoice(invoiceId) ON DELETE CASCADE;
 ALTER TABLE invoiceElement
 ADD FOREIGN KEY (productId) REFERENCES product(productId);
 
@@ -36,20 +37,21 @@ ADD FOREIGN KEY (productId) REFERENCES product(productId);
 #CREATE USER 'invEmployee'@'localhost' IDENTIFIED BY 'epassword';
 #CREATE USER 'invAdmin'@'localhost' IDENTIFIED BY 'apassword';
 
-GRANT SELECT ON invc.invoiceElement TO 'invClient'@'localhost';
+#GRANT SELECT ON invc.invoiceElement TO 'invClient'@'localhost';
 #grant procedure
 
-GRANT SELECT, INSERT, DELETE ON invc.invoice TO 'invEmployee'@'localhost';
-GRANT SELECT, INSERT, DELETE ON invc.invoiceElement TO 'invEmployee'@'localhost';
-GRANT UPDATE ON invc.product TO 'invEmployee'@'localhost';
+#GRANT SELECT, INSERT, DELETE ON invc.invoice TO 'invEmployee'@'localhost';
+#GRANT SELECT, INSERT, DELETE ON invc.invoiceElement TO 'invEmployee'@'localhost';
+#GRANT UPDATE ON invc.product TO 'invEmployee'@'localhost';
 
-GRANT SELECT, INSERT, DELETE ON invc.invoice TO 'invAdmin'@'localhost';
-GRANT SELECT, INSERT, DELETE ON invc.invoiceElement TO 'invAdmin'@'localhost';
-GRANT SELECT, INSERT, DELETE, UPDATE ON invc.client TO 'invAdmin'@'localhost';
-GRANT SELECT, INSERT, DELETE, UPDATE ON invc.product TO 'invAdmin'@'localhost';
+#GRANT SELECT, INSERT, DELETE ON invc.invoice TO 'invAdmin'@'localhost';
+#GRANT SELECT, INSERT, DELETE ON invc.invoiceElement TO 'invAdmin'@'localhost';
+#GRANT SELECT, INSERT, DELETE, UPDATE ON invc.client TO 'invAdmin'@'localhost';
+#GRANT SELECT, INSERT, DELETE, UPDATE ON invc.product TO 'invAdmin'@'localhost';
 
 INSERT INTO client VALUE (1,'Gabi','Wechta','1999-10-10');
 INSERT INTO invoice VALUE (1,1,CURDATE(),0);
-INSERT INTO invoiceElement VALUE (1,1,3);
 INSERT INTO product VALUE (1,'piwo',100,'6.51');
+INSERT INTO invoiceElement VALUE (1,1,3);
+
 #triggery
