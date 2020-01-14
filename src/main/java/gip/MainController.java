@@ -32,6 +32,10 @@ public class MainController {
         stage.showAndWait();
     }
 
+    public void openDialog(ActionEvent actionEvent) throws IOException {
+        openDialog(((Button) actionEvent.getSource()).getId());
+    }
+
     @FXML
     public void initialize() {
         try {
@@ -48,16 +52,11 @@ public class MainController {
                     grantAccess("adminAccess");
                 else if (grants.contains("GRANT SELECT, UPDATE ON `invc`.`product`") && grants.contains("GRANT SELECT ON `invc`.`client`"))
                     grantAccess("employeeAccess");
-            }
-            else if (grants.contains("GRANT SELECT ON `invc`.`invoiceElement`")) grantAccess("clientAccess");
+            } else if (grants.contains("GRANT SELECT ON `invc`.`invoiceElement`")) grantAccess("clientAccess");
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    public void openDialog(ActionEvent actionEvent) throws IOException {
-        openDialog(((Button) actionEvent.getSource()).getId());
     }
 
     @FXML

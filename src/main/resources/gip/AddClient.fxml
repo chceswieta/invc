@@ -19,10 +19,10 @@
     </Label>
     <TextField fx:id="name" layoutX="65.0" layoutY="80.0" prefHeight="25.0" prefWidth="170.0" promptText="First name"/>
     <TextField fx:id="surname" layoutX="65.0" layoutY="110.0" prefHeight="25.0" prefWidth="170.0" promptText="Last name"/>
-    <DatePicker fx:id="date" layoutX="65.0" layoutY="160.0" prefHeight="25.0" prefWidth="170.0" promptText="Date of birth"/>
+    <DatePicker fx:id="date" layoutX="65.0" layoutY="160.0" prefHeight="25.0" prefWidth="170.0" promptText="Date of birth" editable="false"/>
     <TextField fx:id="nip" layoutX="65.0" layoutY="190.0" prefHeight="25.0" prefWidth="170.0" promptText="NIP / PESEL"/>
     <Button layoutX="65.0" layoutY="240.0" prefHeight="25.0" prefWidth="170.0" text="Add" onAction="#addClient"/>
-    <Label fx:id="info" layoutX="45.0" layoutY="275.0" prefHeight="25.0" prefWidth="210.0" textFill="#9f9f9f"
+    <Label fx:id="info" layoutX="45.0" layoutY="275.0" prefWidth="210.0" textFill="#9f9f9f" textAlignment="CENTER"
            alignment="CENTER" wrapText="true"/>
 
 </AnchorPane>
