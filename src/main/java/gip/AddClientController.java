@@ -1,14 +1,11 @@
 package gip;
 
-import javafx.event.ActionEvent;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class AddClientController {
     public TextField name;
@@ -18,15 +15,26 @@ public class AddClientController {
     public Label info;
 
     public void addClient() {
-        try {
-            PreparedStatement preparedStatement = App.prepareStatement("INSERT INTO client (name, surname, birth) VALUE (?, ?, ?)");
-            preparedStatement.setString(1, name.getText());
-            preparedStatement.setString(2, surname.getText());
-            preparedStatement.setDate(3, java.sql.Date.valueOf(date.getValue()));
-            if (preparedStatement.executeUpdate() == 1) info.setText("Done");
-            else info.setText("Something went wrong");
-        } catch (SQLException e) {
-            info.setText(e.getMessage());
+
+        if (nip.getText().length() == 11 || nip.getText().length() == 10) {
+            try {
+                PreparedStatement preparedStatement = App.prepareStatement("INSERT INTO client VALUE (?, ?, ?, ?)");
+                preparedStatement.setString(1, nip.getText());
+                preparedStatement.setString(2, name.getText());
+                preparedStatement.setString(3, surname.getText());
+                preparedStatement.setDate(4, java.sql.Date.valueOf(date.getValue()));
+                if (preparedStatement.executeUpdate() == 1) info.setText("Done");
+                else info.setText("Something went wrong");
+            } catch (SQLException e) {
+                info.setText(e.getMessage());
+            }
         }
+        else {
+            nip.setStyle("-fx-faint-focus-color: transparent; -fx-focus-color: #793a3a;");
+            nip.requestFocus();
+        }
+
+
+
     }
 }

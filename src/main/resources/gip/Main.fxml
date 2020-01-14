@@ -8,45 +8,52 @@
 <?import javafx.scene.Group?>
 <VBox prefHeight="500.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="gip.MainController">
-    <children>
-        <AnchorPane>
-            <Label alignment="CENTER" layoutX="45.0" layoutY="30.0" style="&#10;" prefWidth="210.0"
-                   text="Invoicer" textAlignment="CENTER" textFill="#9f9f9f" focusTraversable="true">
-                <font>
-                    <Font size="18.0"/>
-                </font>
-            </Label>
-            <Group fx:id="clientAccess">
-                <Button  layoutX="65.0" layoutY="80.0" prefHeight="25.0" prefWidth="170.0" mnemonicParsing="false"
-                         text="Display an invoice" disable="true" onAction="#display"/>
-            </Group>
+    <AnchorPane>
+        <Label alignment="CENTER" layoutX="45.0" layoutY="30.0" style="&#10;" prefWidth="210.0"
+               text="Invoicer" textAlignment="CENTER" textFill="#9f9f9f" focusTraversable="true">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Label>
+        <Group fx:id="clientAccess">
+            <Button id="Display" layoutX="65.0" layoutY="80.0" prefHeight="25.0" prefWidth="170.0"
+                    mnemonicParsing="false"
+                    text="Display an invoice" disable="true" onAction="#openDialog"/>
+        </Group>
 
-            <Group fx:id="employeeAccess">
-                <Button layoutX="65.0" layoutY="125.0" prefHeight="25.0" prefWidth="170.0" mnemonicParsing="false"
-                        text="New invoice item" disable="true" onAction="#addItem"/>
-                <Button layoutX="65.0" layoutY="155.0" prefHeight="25.0" prefWidth="170.0" mnemonicParsing="false"
-                        text="Remove invoice item" disable="true" onAction="#removeItem"/>
-                <Button layoutX="65.0" layoutY="185.0" prefHeight="25.0" prefWidth="170.0" mnemonicParsing="false"
-                        text="Remove an invoice" disable="true" onAction="#removeInvoice"/>
+        <Group fx:id="employeeAccess">
+            <Button id="AddItem" layoutX="65.0" layoutY="125.0" prefHeight="25.0" prefWidth="170.0"
+                    mnemonicParsing="false"
+                    text="New invoice item" disable="true" onAction="#openDialog"/>
+            <Button id="RemoveItem" layoutX="65.0" layoutY="155.0" prefHeight="25.0" prefWidth="170.0"
+                    mnemonicParsing="false"
+                    text="Remove invoice item" disable="true" onAction="#openDialog"/>
+            <Button id="RemoveInvoice" layoutX="65.0" layoutY="185.0" prefHeight="25.0" prefWidth="170.0"
+                    mnemonicParsing="false"
+                    text="Remove an invoice" disable="true" onAction="#openDialog"/>
 
-                <Button layoutX="65.0" layoutY="335.0" prefHeight="25.0" prefWidth="170.0" mnemonicParsing="false"
-                        text="Restock" disable="true" onAction="#restock"/>
-            </Group>
+            <Button id="Restock" layoutX="65.0" layoutY="335.0" prefHeight="25.0" prefWidth="170.0"
+                    mnemonicParsing="false"
+                    text="Restock" disable="true" onAction="#openDialog"/>
+        </Group>
 
-            <Group fx:id="adminAccess">
-                <Button layoutX="65.0" layoutY="230.0" prefHeight="25.0" prefWidth="170.0" mnemonicParsing="false"
-                        text="New client" disable="true" onAction="#addClient"/>
-                <Button layoutX="65.0" layoutY="260.0" prefHeight="25.0" prefWidth="170.0" mnemonicParsing="false"
-                        text="Remove a client" disable="true" onAction="#removeClient"/>
+        <Group fx:id="adminAccess">
+            <Button id="AddClient" layoutX="65.0" layoutY="230.0" prefHeight="25.0" prefWidth="170.0"
+                    mnemonicParsing="false"
+                    text="New client" disable="true" onAction="#openDialog"/>
+            <Button id="RemoveClient" layoutX="65.0" layoutY="260.0" prefHeight="25.0" prefWidth="170.0"
+                    mnemonicParsing="false"
+                    text="Remove a client" disable="true" onAction="#openDialog"/>
 
-                <Button layoutX="65.0" layoutY="305.0" prefHeight="25.0" prefWidth="170.0" mnemonicParsing="false"
-                        text="New product" disable="true" onAction="#addProduct"/>
-                <Button layoutX="65.0" layoutY="365.0" prefHeight="25.0" prefWidth="170.0" mnemonicParsing="false"
-                        text="Remove a product" disable="true" onAction="#removeProduct"/>
-            </Group>
+            <Button id="AddProduct" layoutX="65.0" layoutY="305.0" prefHeight="25.0" prefWidth="170.0"
+                    mnemonicParsing="false"
+                    text="New product" disable="true" onAction="#openDialog"/>
+            <Button id="RemoveProduct" layoutX="65.0" layoutY="365.0" prefHeight="25.0" prefWidth="170.0"
+                    mnemonicParsing="false"
+                    text="Remove a product" disable="true" onAction="#openDialog"/>
+        </Group>
 
-            <Button layoutX="65.0" layoutY="410.0" prefHeight="25.0" prefWidth="170.0" mnemonicParsing="false"
-                    text="Log out" onAction="#logout"/>
-        </AnchorPane>
-    </children>
+        <Button layoutX="65.0" layoutY="410.0" prefHeight="25.0" prefWidth="170.0" mnemonicParsing="false"
+                text="Log out" onAction="#logout"/>
+    </AnchorPane>
 </VBox>

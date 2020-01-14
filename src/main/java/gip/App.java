@@ -2,7 +2,6 @@ package gip;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -10,9 +9,6 @@ import java.sql.*;
 
 import java.io.IOException;
 
-/**
- * JavaFX App
- */
 public class App extends Application {
     private static Scene scene;
     private static Connection connection;

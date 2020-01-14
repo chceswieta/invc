@@ -1,14 +1,13 @@
 package gip;
 
-import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -26,20 +25,6 @@ public class MainController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(option + ".fxml"));
         Parent parent = loader.load();
         Scene scene = new Scene(parent);
-        Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.showAndWait();
-    }
-
-    private void openDialog(String option, int limit) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(option + ".fxml"));
-        Parent parent = loader.load();
-        Scene scene = new Scene(parent);
-        SpinnerValueFactory.IntegerSpinnerValueFactory factory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, limit);
-        Spinner<Integer> spinner = (Spinner<Integer>) scene.lookup("#quantity");
-        spinner.setValueFactory(factory);
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
@@ -71,49 +56,8 @@ public class MainController {
         }
     }
 
-    @FXML
-    private void display() throws IOException {
-        openDialog("Display");
-    }
-
-    @FXML
-    private void addItem() throws IOException {
-        openDialog("AddItem");
-    }
-
-    @FXML
-    private void removeItem() throws IOException {
-        openDialog("RemoveItem");
-    }
-
-    @FXML
-    private void removeInvoice() throws IOException {
-        openDialog("RemoveInvoice");
-    }
-
-    @FXML
-    private void addClient() throws IOException {
-        openDialog("AddClient");
-    }
-
-    @FXML
-    private void removeClient() throws IOException {
-        openDialog("RemoveClient");
-    }
-
-    @FXML
-    private void addProduct() throws IOException {
-        openDialog("AddProduct");
-    }
-
-    @FXML
-    private void restock() throws IOException {
-        openDialog("Restock");
-    }
-
-    @FXML
-    private void removeProduct() throws IOException {
-        openDialog("RemoveProduct");
+    public void openDialog(ActionEvent actionEvent) throws IOException {
+        openDialog(((Button) actionEvent.getSource()).getId());
     }
 
     @FXML
@@ -139,4 +83,6 @@ public class MainController {
         }
         for (Node button : buttonGroup) button.setDisable(false);
     }
+
+
 }

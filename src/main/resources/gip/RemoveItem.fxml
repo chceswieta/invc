@@ -14,12 +14,12 @@
             <Font size="18.0"/>
         </font>
     </Label>
-    <TextField layoutX="65.0" layoutY="80.0" prefHeight="25.0" prefWidth="170.0" promptText="Invoice ID"/>
-    <TextField layoutX="65.0" layoutY="130.0" prefHeight="25.0" prefWidth="170.0" promptText="Product ID"/>
+    <TextField fx:id="invoiceId" layoutX="65.0" layoutY="80.0" prefHeight="25.0" prefWidth="170.0" promptText="Invoice ID"/>
+    <TextField fx:id="productId" layoutX="65.0" layoutY="130.0" prefHeight="25.0" prefWidth="170.0" promptText="Product ID"/>
     <Label layoutX="45.0" layoutY="160.0" prefHeight="25.0" prefWidth="210.0" text="or" textFill="#9f9f9f"
            alignment="CENTER" />
     <ChoiceBox layoutX="65.0" layoutY="190.0" prefHeight="25.0" prefWidth="170.0"/>
-    <Button layoutX="65.0" layoutY="240.0" prefHeight="25.0" prefWidth="170.0" text="Remove"/>
+    <Button layoutX="65.0" layoutY="240.0" prefHeight="25.0" prefWidth="170.0" text="Remove" onAction="#removeItem"/>
     <Label layoutX="45.0" layoutY="275.0" prefHeight="25.0" prefWidth="210.0" text="Done" textFill="#9f9f9f"
            alignment="CENTER" wrapText="true"/>
 </AnchorPane>
