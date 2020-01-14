@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
 import java.sql.*;
 
 import java.io.IOException;
@@ -45,6 +46,12 @@ public class App extends Application {
 
     public static PreparedStatement prepareStatement(String statement) throws SQLException {
         return connection.prepareStatement(statement);
+    }
+
+    @Override
+    public void stop() throws Exception {
+        if (connection != null && !connection.isClosed()) endConnection();
+        super.stop();
     }
 
     public static void main(String[] args) {
