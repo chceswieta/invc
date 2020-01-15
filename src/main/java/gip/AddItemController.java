@@ -16,7 +16,7 @@ public class AddItemController extends ProductListController {
     public void addItem() {
         resetFocus();
 
-        if (product.getSelectionModel().isEmpty()) {
+        if (!productChosen()) {
             redFocus(product);
             setInfo("Field cannot be empty.", true);
         } else if (invoiceId.getText().isEmpty()) {

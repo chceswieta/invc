@@ -16,4 +16,8 @@ public abstract class ProductListController extends ResponseController {
     public int getProductId() {
         return Integer.parseInt(product.getValue().split(" ")[0]);
     }
+
+    public boolean productChosen() {
+        return !product.getSelectionModel().isEmpty();
+    }
 }
