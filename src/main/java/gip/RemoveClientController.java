@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 
-public class RemoveClientController extends ResponseController{
+public class RemoveClientController extends ResponseController {
     public TextField nip;
     public Label info;
 
@@ -15,11 +15,11 @@ public class RemoveClientController extends ResponseController{
         resetFocus();
         if (nip.getText().isEmpty()) {
             redFocus(nip);
-            setInfo("Field can't be empty.", true);
+            setInfo("Field cannot be empty.", true);
         }
         else {
             try {
-                PreparedStatement preparedStatement = App.prepareStatement("DELETE FROM client WHERE clientId = ?");
+                PreparedStatement preparedStatement = prepareStatement("DELETE FROM client WHERE clientId = ?");
                 preparedStatement.setString(1, nip.getText());
                 int affected = preparedStatement.executeUpdate();
                 if (affected == 1) setInfo("Done.", false);

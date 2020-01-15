@@ -18,7 +18,7 @@
             <Font size="18.0"/>
         </font>
     </Label>
-    <ChoiceBox fx:id="productName" layoutX="65.0" layoutY="80.0" prefHeight="25.0" prefWidth="170.0"/>
+    <ChoiceBox fx:id="product" layoutX="65.0" layoutY="80.0" prefHeight="25.0" prefWidth="170.0"/>
     <Spinner fx:id="quantity" layoutX="65.0" layoutY="110.0" prefHeight="25.0" prefWidth="170.0"
              promptText="Quantity" min="1" max="100" initialValue="1">
         <editable>true</editable>
