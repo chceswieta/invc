@@ -34,7 +34,7 @@
         </valueFactory>
     </Spinner>
     <Button layoutX="65.0" layoutY="250.0" prefHeight="25.0" prefWidth="170.0" text="Add" onAction="#addProduct"/>
-    <Label fx:id="info" layoutX="45.0" layoutY="300.0" prefHeight="25.0" prefWidth="210.0" textFill="dimgray"
+    <Label fx:id="info" layoutX="45.0" layoutY="300.0" prefHeight="25.0" prefWidth="210.0" textFill="dimgray" textAlignment="CENTER"
            alignment="CENTER" wrapText="true"/>
 
 </AnchorPane>

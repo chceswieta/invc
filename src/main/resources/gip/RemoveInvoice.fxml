@@ -14,6 +14,6 @@
     </Label>
     <TextField fx:id="invoiceID" layoutX="65.0" layoutY="80.0" promptText="Invoice ID"/>
     <Button layoutX="65.0" layoutY="120.0" prefHeight="25.0" prefWidth="170.0" text="Remove" onAction="#removeInvoice"/>
-    <Label fx:id="info" alignment="CENTER" layoutX="45.0" layoutY="155.0" prefHeight="25.0" prefWidth="210.0"
+    <Label fx:id="info" textAlignment="CENTER" alignment="CENTER" layoutX="45.0" layoutY="155.0" prefHeight="25.0" prefWidth="210.0"
            textFill="dimgray" wrapText="true"/>
 </AnchorPane>

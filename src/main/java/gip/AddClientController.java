@@ -2,7 +2,6 @@ package gip;
 
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

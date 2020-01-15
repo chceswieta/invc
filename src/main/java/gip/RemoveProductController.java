@@ -3,9 +3,8 @@ package gip;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class RemoveProductController {
+public class RemoveProductController extends ResponseController {
     public TextField productId;
-    public Label info;
 
     public void removeProduct() {
     }
