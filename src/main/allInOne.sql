@@ -94,6 +94,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS gen;
 DROP PROCEDURE IF EXISTS addie;
+DROP PROCEDURE IF EXISTS dellie;
 
 DELIMITER $$
 
@@ -138,7 +139,6 @@ BEGIN
             RESIGNAL;
         END;
     SET autocommit = 0;
-    SET autocommit = 0;
 
     START TRANSACTION;
 
@@ -157,7 +157,9 @@ END $$
 
 DELIMITER ;
 
+
 ###################################MISC###################################
+
 
 DROP USER IF EXISTS 'invClient'@'localhost';
 DROP USER IF EXISTS 'invEmployee'@'localhost';
@@ -182,8 +184,8 @@ GRANT SELECT, INSERT, DELETE, UPDATE ON invc.client TO 'invAdmin'@'localhost';
 GRANT SELECT, INSERT, DELETE, UPDATE ON invc.product TO 'invAdmin'@'localhost';
 GRANT EXECUTE ON invc.* TO 'invAdmin'@'localhost';
 
-INSERT INTO client VALUE ('1','Gabi','Wechta','1999-10-10');
-INSERT INTO invoice VALUE (1,'1',CURDATE(),0);
+INSERT INTO client VALUE ('9910101234','Gabi','Wechta','1999-10-10');
+INSERT INTO invoice VALUE (1,'9910101234',CURDATE(),0);
 INSERT INTO product VALUE (1,'piwo',100,'6.51');
 CALL addie(1,1,3);
 

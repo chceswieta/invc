@@ -18,7 +18,7 @@
     <TextField fx:id="productId" layoutX="65.0" layoutY="130.0" prefHeight="25.0" prefWidth="170.0" promptText="Product ID"/>
     <Label layoutX="45.0" layoutY="160.0" prefHeight="25.0" prefWidth="210.0" text="or" textFill="dimgray"
            alignment="CENTER" />
-    <ChoiceBox layoutX="65.0" layoutY="190.0" prefHeight="25.0" prefWidth="170.0"/>
+    <ChoiceBox fx:id="product" layoutX="65.0" layoutY="190.0" prefHeight="25.0" prefWidth="170.0"/>
     <Button layoutX="65.0" layoutY="240.0" prefHeight="25.0" prefWidth="170.0" text="Remove" onAction="#removeItem"/>
     <Label layoutX="45.0" layoutY="275.0" prefHeight="25.0" prefWidth="210.0" textFill="dimgray" textAlignment="CENTER"
            alignment="CENTER" wrapText="true"/>
