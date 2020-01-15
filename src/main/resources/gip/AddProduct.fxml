@@ -13,18 +13,18 @@
             fx:controller="gip.AddProductController"
             prefHeight="350.0" prefWidth="300.0">
     <Label alignment="CENTER" layoutX="45.0" layoutY="30.0" style="&#10;" prefWidth="210.0"
-           text="New product" textAlignment="CENTER" textFill="#9f9f9f" focusTraversable="true">
+           text="New product" textAlignment="CENTER" textFill="dimgray" focusTraversable="true">
         <font>
             <Font size="18.0"/>
         </font>
     </Label>
     <TextField fx:id="name" layoutX="65.0" layoutY="80.0" prefHeight="25.0" prefWidth="170.0" promptText="Name"/>
-    <Label layoutX="45.0" layoutY="110.0" prefHeight="25.0" prefWidth="210.0" text="Quantity:" textFill="#9f9f9f"
+    <Label layoutX="45.0" layoutY="110.0" prefHeight="25.0" prefWidth="210.0" text="Quantity:" textFill="dimgray"
            alignment="CENTER"/>
     <Spinner fx:id="quantity" layoutX="65.0" layoutY="140.0" prefHeight="25.0" prefWidth="170.0"
              promptText="Quantity"
              min="1" max="100" initialValue="1" editable="true"/>
-    <Label layoutX="45.0" layoutY="170.0" prefHeight="25.0" prefWidth="210.0" text="Price per item:" textFill="#9f9f9f"
+    <Label layoutX="45.0" layoutY="170.0" prefHeight="25.0" prefWidth="210.0" text="Price per item:" textFill="dimgray"
            alignment="CENTER" wrapText="true"/>
     <Spinner fx:id="price" layoutX="65.0" layoutY="200.0" prefHeight="25.0" prefWidth="170.0" promptText="Price per item"
              editable="true">
@@ -34,7 +34,7 @@
         </valueFactory>
     </Spinner>
     <Button layoutX="65.0" layoutY="250.0" prefHeight="25.0" prefWidth="170.0" text="Add" onAction="#addProduct"/>
-    <Label fx:id="info" layoutX="45.0" layoutY="300.0" prefHeight="25.0" prefWidth="210.0" textFill="#9f9f9f"
+    <Label fx:id="info" layoutX="45.0" layoutY="300.0" prefHeight="25.0" prefWidth="210.0" textFill="dimgray" textAlignment="CENTER"
            alignment="CENTER" wrapText="true"/>
 
 </AnchorPane>

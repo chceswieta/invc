@@ -10,16 +10,16 @@
             fx:controller="gip.DisplayController"
             prefHeight="700.0" prefWidth="500.0">
     <Label alignment="CENTER" layoutY="30.0" style="&#10;" prefWidth="500.0"
-           text="Display an invoice" textAlignment="CENTER" textFill="#9f9f9f" focusTraversable="true">
+           text="Display an invoice" textAlignment="CENTER" textFill="dimgray" focusTraversable="true">
         <font>
             <Font size="18.0"/>
         </font>
     </Label>
-    <Label layoutY="80.0" prefHeight="25.0" prefWidth="500.0" text="Invoice ID:" textFill="#9f9f9f"
+    <Label layoutY="80.0" prefHeight="25.0" prefWidth="500.0" text="Invoice ID:" textFill="dimgray"
            alignment="CENTER"/>
     <ChoiceBox fx:id="invoiceChoice" layoutX="165.0" layoutY="110.0" prefHeight="25.0" prefWidth="170.0" onAction="#display"/>
     <Label fx:id="invoice_contents" alignment="CENTER" layoutX="50.0" layoutY="170.0" style="&#10;" prefHeight="500.0"
            prefWidth="400.0"
            text="invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice "
-           textAlignment="CENTER" textFill="#9f9f9f" wrapText="true"/>
+           textAlignment="CENTER" textFill="dimgray" wrapText="true"/>
 </AnchorPane>

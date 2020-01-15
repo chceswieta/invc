@@ -10,7 +10,7 @@
       fx:controller="gip.MainController">
     <AnchorPane>
         <Label alignment="CENTER" layoutX="45.0" layoutY="30.0" style="&#10;" prefWidth="210.0"
-               text="Invoicer" textAlignment="CENTER" textFill="#9f9f9f" focusTraversable="true">
+               text="Invoicer" textAlignment="CENTER" textFill="dimgray" focusTraversable="true">
             <font>
                 <Font size="18.0"/>
             </font>

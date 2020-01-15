@@ -7,12 +7,11 @@ import javafx.scene.control.TextField;
 
 import java.sql.SQLException;
 
-public class AddItemController {
+public class AddItemController extends ResponseController {
     public Spinner<Integer> quantity;
     public TextField nip;
     public TextField invoiceId;
     public ChoiceBox<String> product;
-    public Label info;
 
     public void initialize() throws SQLException {
         
