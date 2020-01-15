@@ -19,8 +19,8 @@
             <Font size="18.0"/>
         </font>
     </Label>
-    <TextField fx:id="nip" layoutX="65.0" layoutY="80.0" prefHeight="25.0" prefWidth="170.0" promptText="NIP"/>
-    <TextField fx:id="invoiceId" layoutX="65.0" layoutY="110.0" prefHeight="25.0" prefWidth="170.0" promptText="Invoice ID"/>
+    <TextField fx:id="nip" layoutX="65.0" layoutY="80.0" prefHeight="25.0" prefWidth="170.0" promptText="NIP" onKeyTyped="#onlyOne"/>
+    <TextField fx:id="invoiceId" layoutX="65.0" layoutY="110.0" prefHeight="25.0" prefWidth="170.0" promptText="Invoice ID" onKeyTyped="#onlyOne"/>
     <Label layoutX="45.0" layoutY="160.0" prefHeight="25.0" prefWidth="210.0" text="Product:" textFill="dimgray"
            alignment="CENTER"/>
     <ChoiceBox fx:id="product" layoutX="65.0" layoutY="190.0" prefHeight="25.0" prefWidth="170.0"/>
@@ -31,6 +31,6 @@
              min="1" max="100" initialValue="1" editable="true"/>
     <Button layoutX="65.0" layoutY="300.0" prefHeight="25.0" prefWidth="170.0" text="Add" onAction="#addItem"/>
     <Label fx:id="info" layoutX="45.0" layoutY="330.0" textFill="dimgray" prefWidth="210.0" wrapText="true"
-          text="${'Note:\n Leave the ID field empty if you want to create a new invoice.'}"
-          textAlignment="CENTER" />
+          text="Leave the ID field empty if you want to create a new invoice."
+          textAlignment="CENTER" alignment="CENTER"/>
 </AnchorPane>

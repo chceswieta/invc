@@ -32,7 +32,7 @@ public class App extends Application {
     }
 
     public static void attemptConnection(String user, String password) throws SQLException {
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/invc", user, password);
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/invc?noAccessToProcedureBodies=true", user, password);
     }
 
     public static void endConnection() throws SQLException {
@@ -44,8 +44,17 @@ public class App extends Application {
         return statement.executeQuery(query);
     }
 
+    public static int executeUpdate(String query) throws SQLException {
+        Statement statement = connection.createStatement();
+        return statement.executeUpdate(query);
+    }
+
     public static PreparedStatement prepareStatement(String statement) throws SQLException {
         return connection.prepareStatement(statement);
+    }
+
+    public static CallableStatement prepareCall(String statement) throws SQLException {
+        return connection.prepareCall(statement);
     }
 
     @Override
