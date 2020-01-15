@@ -27,7 +27,7 @@ CREATE TRIGGER NumberOfProductUpdateTrigger BEFORE UPDATE ON product FOR EACH RO
 BEGIN
 	IF(new.number < 0) THEN SIGNAL SQLSTATE '45000'
 		SET MESSAGE_TEXT = 'You have tried to update number of product to minus number. 
-From empty and salomon will not pour.';
+From empty and Salomon will not pour.';
 	END IF;
 END $$
 
