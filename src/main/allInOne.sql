@@ -33,28 +33,6 @@ ADD FOREIGN KEY (invoiceId) REFERENCES invoice(invoiceId) ON DELETE CASCADE;
 ALTER TABLE invoiceElement
 ADD FOREIGN KEY (productId) REFERENCES product(productId);
 
-#CREATE USER 'invClient'@'localhost' IDENTIFIED BY 'cpassword';
-#CREATE USER 'invEmployee'@'localhost' IDENTIFIED BY 'epassword';
-#CREATE USER 'invAdmin'@'localhost' IDENTIFIED BY 'apassword';
-
-#GRANT SELECT ON invc.invoiceElement TO 'invClient'@'localhost';
-#grant procedure
-
-#GRANT SELECT ON invc.client TO 'invEmployee'@'localhost';
-#GRANT SELECT, INSERT, DELETE ON invc.invoice TO 'invEmployee'@'localhost';
-#GRANT SELECT, INSERT, DELETE ON invc.invoiceElement TO 'invEmployee'@'localhost';
-#GRANT SELECT, UPDATE ON invc.product TO 'invEmployee'@'localhost';
-
-#GRANT SELECT, INSERT, DELETE ON invc.invoice TO 'invAdmin'@'localhost';
-#GRANT SELECT, INSERT, DELETE ON invc.invoiceElement TO 'invAdmin'@'localhost';
-#GRANT SELECT, INSERT, DELETE, UPDATE ON invc.client TO 'invAdmin'@'localhost';
-#GRANT SELECT, INSERT, DELETE, UPDATE ON invc.product TO 'invAdmin'@'localhost';
-
-INSERT INTO client VALUE ('1','Gabi','Wechta','1999-10-10');
-INSERT INTO invoice VALUE (1,'1',CURDATE(),0);
-INSERT INTO product VALUE (1,'piwo',100,'6.51');
-INSERT INTO invoiceElement VALUE (1,1,3);
-
 ###################################TRIGGERS###################################
 
 DROP TRIGGER IF EXISTS RightAgeTrigger;
@@ -95,12 +73,20 @@ BEGIN
 	END IF;
 END $$
 
-CREATE TRIGGER NumberOfInvoiceElemntTrigger BEFORE INSERT ON invoiceElement FOR EACH ROW
+CREATE TRIGGER NumberOfInvoiceElementTriggerI BEFORE INSERT ON invoiceElement FOR EACH ROW
 BEGIN
 	IF((SELECT DISTINCT number FROM product WHERE product.productId = new.productId) < new.number) THEN SIGNAL SQLSTATE '45000'
-		SET MESSAGE_TEXT = 'Number of product on invoice is bigger than number avalible in stack';  
+		SET MESSAGE_TEXT = 'Number of product on invoice is bigger than number available in stock';
 	END IF;
 END $$
+
+CREATE TRIGGER NumberOfInvoiceElementTriggerU BEFORE UPDATE ON invoiceElement FOR EACH ROW
+BEGIN
+    IF((SELECT DISTINCT number FROM product WHERE product.productId = new.productId) < new.number) THEN SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Number of product on invoice is bigger than number available in stock';
+    END IF;
+END $$
+
 DELIMITER ;
 
 ###################################PROCEDURES###################################
@@ -116,31 +102,88 @@ BEGIN
 	SELECT CONCAT(clientId, ' ', invoiceId, ' ', date, ' ', total) FROM invoice WHERE invoice.invoiceId = invoiceId;
 END $$
 
-CREATE PROCEDURE addie(IN invoiceId INT, IN productId INT, IN number INT)
+CREATE PROCEDURE addie(IN iId INT, IN pId INT, IN n INT)
 BEGIN		
-	DECLARE howManyInStack INT UNSIGNED;
+	DECLARE howManyInStack INT;
 	DECLARE oldInvoiceTotal, productPrice DECIMAL(6,2);
-	DECLARE _rollback BOOL DEFAULT 0;
-	DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET _rollback = 1;
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+        BEGIN
+            ROLLBACK;
+            RESIGNAL;
+        END;
 	SET autocommit = 0;
 
 	START TRANSACTION;
 
-		SET howManyInStack = (SELECT product.number FROM product WHERE product.productId = productId);
-		SET oldInvoiceTotal = (SELECT invoice.total FROM invoice WHERE invoice.invoiceId = invoiceId);
-		SET productPrice = (SELECT product.price FROM product WHERE product.productId = productId);
+		SET howManyInStack = (SELECT product.number FROM product WHERE product.productId = pId);
+		SET oldInvoiceTotal = (SELECT invoice.total FROM invoice WHERE invoice.invoiceId = iId);
+		SET productPrice = (SELECT product.price FROM product WHERE product.productId = pId);
+        IF ((SELECT COUNT(*) FROM invoiceElement WHERE invoiceId = iId AND productId = pId) = 1) THEN
+            UPDATE invoiceElement SET number = number + n WHERE invoiceId = iId AND productId = pId;
+        ELSE INSERT INTO invoiceElement VALUE (iId, pId, n);
+        END IF;
+		UPDATE product SET product.number = howManyInStack - n WHERE product.productId = pId;
+		UPDATE invoice SET invoice.total = oldInvoiceTotal + n * productPrice WHERE invoice.invoiceId = iId;
 
-		UPDATE product SET product.number = howManyInStack - number WHERE product.productId = productId;
-		UPDATE invoice SET invoice.total = oldInvoiceTotal + number * productPrice WHERE invoice.invoiceId = invoiceId;
+      	COMMIT;
+END $$
 
-		INSERT INTO invoiceElement VALUE (invoiceId, productId, number);
+CREATE PROCEDURE dellie(IN iId INT, IN pId INT)
+BEGIN
+    DECLARE howManyInStack, n INT;
+    DECLARE oldInvoiceTotal, productPrice DECIMAL(6,2);
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+        BEGIN
+            ROLLBACK;
+            RESIGNAL;
+        END;
+    SET autocommit = 0;
+    SET autocommit = 0;
 
-		IF _rollback THEN
-        		ROLLBACK;
-    		ELSE
-      			COMMIT;
-		END IF;
+    START TRANSACTION;
+
+    SET n = (SELECT number FROM invoiceElement WHERE invoiceElement.invoiceId = iId AND invoiceElement.productId = pId);
+    SET howManyInStack = (SELECT product.number FROM product WHERE product.productId = pId);
+    SET oldInvoiceTotal = (SELECT invoice.total FROM invoice WHERE invoice.invoiceId = iId);
+    SET productPrice = (SELECT product.price FROM product WHERE product.productId = pId);
+
+    UPDATE product SET product.number = howManyInStack + n WHERE product.productId = pId;
+    UPDATE invoice SET invoice.total = oldInvoiceTotal - n * productPrice WHERE invoice.invoiceId = iId;
+
+    DELETE FROM invoiceElement WHERE invoiceId = iId AND productId = pId;
+
+    COMMIT;
 END $$
 
 DELIMITER ;
+
+###################################MISC###################################
+
+DROP USER IF EXISTS 'invClient'@'localhost';
+DROP USER IF EXISTS 'invEmployee'@'localhost';
+DROP USER IF EXISTS 'invAdmin'@'localhost';
+
+CREATE USER 'invClient'@'localhost' IDENTIFIED BY 'cpassword';
+CREATE USER 'invEmployee'@'localhost' IDENTIFIED BY 'epassword';
+CREATE USER 'invAdmin'@'localhost' IDENTIFIED BY 'apassword';
+
+GRANT SELECT ON invc.invoiceElement TO 'invClient'@'localhost';
+GRANT EXECUTE ON PROCEDURE gen TO 'invClient'@'localhost';
+
+GRANT SELECT ON invc.client TO 'invEmployee'@'localhost';
+GRANT SELECT, INSERT, DELETE, UPDATE ON invc.invoice TO 'invEmployee'@'localhost';
+GRANT SELECT, INSERT, DELETE, UPDATE ON invc.invoiceElement TO 'invEmployee'@'localhost';
+GRANT SELECT, UPDATE ON invc.product TO 'invEmployee'@'localhost';
+GRANT EXECUTE ON invc.* TO 'invEmployee'@'localhost';
+
+GRANT SELECT, INSERT, DELETE, UPDATE ON invc.invoice TO 'invAdmin'@'localhost';
+GRANT SELECT, INSERT, DELETE, UPDATE ON invc.invoiceElement TO 'invAdmin'@'localhost';
+GRANT SELECT, INSERT, DELETE, UPDATE ON invc.client TO 'invAdmin'@'localhost';
+GRANT SELECT, INSERT, DELETE, UPDATE ON invc.product TO 'invAdmin'@'localhost';
+GRANT EXECUTE ON invc.* TO 'invAdmin'@'localhost';
+
+INSERT INTO client VALUE ('1','Gabi','Wechta','1999-10-10');
+INSERT INTO invoice VALUE (1,'1',CURDATE(),0);
+INSERT INTO product VALUE (1,'piwo',100,'6.51');
+CALL addie(1,1,3);
 

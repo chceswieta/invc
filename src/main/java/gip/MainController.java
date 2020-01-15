@@ -46,13 +46,13 @@ public class MainController {
                 grant = rs.getString(1).split(" TO ")[0];
                 grants.add(grant);
             }
-            boolean moreThanClientAccess = grants.contains("GRANT SELECT, INSERT, DELETE ON `invc`.`invoice`") && grants.contains("GRANT SELECT, INSERT, DELETE ON `invc`.`invoiceElement`");
+            boolean moreThanClientAccess = grants.contains("GRANT SELECT, INSERT, UPDATE, DELETE ON `invc`.`invoice`") && grants.contains("GRANT SELECT, INSERT, UPDATE, DELETE ON `invc`.`invoiceElement`") && grants.contains("GRANT EXECUTE ON `invc`.*");
             if (moreThanClientAccess) {
                 if (grants.contains("GRANT SELECT, INSERT, UPDATE, DELETE ON `invc`.`client`") && grants.contains("GRANT SELECT, INSERT, UPDATE, DELETE ON `invc`.`product`"))
                     grantAccess("adminAccess");
                 else if (grants.contains("GRANT SELECT, UPDATE ON `invc`.`product`") && grants.contains("GRANT SELECT ON `invc`.`client`"))
                     grantAccess("employeeAccess");
-            } else if (grants.contains("GRANT SELECT ON `invc`.`invoiceElement`")) grantAccess("clientAccess");
+            } else if (grants.contains("GRANT SELECT ON `invc`.`invoiceElement`") && grants.contains("GRANT EXECUTE ON PROCEDURE `invc`.`gen`")) grantAccess("clientAccess");
 
         } catch (SQLException e) {
             e.printStackTrace();
