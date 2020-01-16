@@ -48,6 +48,9 @@
             <Button id="AddProduct" layoutX="65.0" layoutY="305.0" prefHeight="25.0" prefWidth="170.0"
                     mnemonicParsing="false"
                     text="New product" disable="true" onAction="#openDialog"/>
+            <Button id="Backup" layoutX="65.0" layoutY="365.0" prefHeight="25.0" prefWidth="170.0"
+                    mnemonicParsing="false"
+                    text="Backup" disable="true" onAction="#backup"/>
         </Group>
 
         <Button layoutX="65.0" layoutY="410.0" prefHeight="25.0" prefWidth="170.0" mnemonicParsing="false"

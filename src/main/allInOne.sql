@@ -6,7 +6,8 @@ CREATE TABLE client (
     clientId varchar(11) PRIMARY KEY  NOT NULL,
     name varchar(20) NOT NULL,
     surname varchar(20) NOT NULL,
-    birth date NOT NULL
+    birth date NOT NULL,
+    username varchar(20)
 );
 CREATE TABLE invoice (
     invoiceId int PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -93,14 +94,20 @@ DELIMITER ;
 
 
 DROP PROCEDURE IF EXISTS gen;
+DROP PROCEDURE IF EXISTS num;
 DROP PROCEDURE IF EXISTS addie;
 DROP PROCEDURE IF EXISTS dellie;
 
 DELIMITER $$
 
-CREATE PROCEDURE gen(IN invoiceId INT)
+CREATE PROCEDURE gen(IN iId INT)
 BEGIN		
-	SELECT CONCAT(clientId, ' ', invoiceId, ' ', date, ' ', total) FROM invoice WHERE invoice.invoiceId = invoiceId;
+	SELECT CONCAT(clientId, ' ', invoiceId, ' ', date, ' ', total) FROM invoice WHERE invoice.invoiceId = iId;
+END $$
+
+CREATE PROCEDURE num(IN user VARCHAR(20))
+BEGIN
+    SELECT invoiceId FROM invoice i INNER JOIN client c ON i.clientId = c.clientId WHERE c.username = user ORDER BY invoiceId;
 END $$
 
 CREATE PROCEDURE addie(IN iId INT, IN pId INT, IN n INT)
@@ -170,7 +177,9 @@ CREATE USER 'invEmployee'@'localhost' IDENTIFIED BY 'epassword';
 CREATE USER 'invAdmin'@'localhost' IDENTIFIED BY 'apassword';
 
 GRANT SELECT ON invc.invoiceElement TO 'invClient'@'localhost';
+GRANT SELECT ON invc.product TO 'invClient'@'localhost';
 GRANT EXECUTE ON PROCEDURE gen TO 'invClient'@'localhost';
+GRANT EXECUTE ON PROCEDURE num TO 'invClient'@'localhost';
 
 GRANT SELECT ON invc.client TO 'invEmployee'@'localhost';
 GRANT SELECT, INSERT, DELETE, UPDATE ON invc.invoice TO 'invEmployee'@'localhost';
@@ -184,8 +193,12 @@ GRANT SELECT, INSERT, DELETE, UPDATE ON invc.client TO 'invAdmin'@'localhost';
 GRANT SELECT, INSERT, DELETE, UPDATE ON invc.product TO 'invAdmin'@'localhost';
 GRANT EXECUTE ON invc.* TO 'invAdmin'@'localhost';
 
-INSERT INTO client VALUE ('9910101234','Gabi','Wechta','1999-10-10');
+INSERT INTO client VALUE ('9910101234','Gabi','Wechta','1999-10-10', 'invClient');
+INSERT INTO client VALUE ('9910101235','Patryk','Majewski','1999-10-10', null);
 INSERT INTO invoice VALUE (1,'9910101234',CURDATE(),0);
+INSERT INTO invoice VALUE (2,'9910101235',CURDATE(),0);
 INSERT INTO product VALUE (1,'piwo',100,'6.51');
+INSERT INTO product VALUE (2,'mleko',100,'2.30');
 CALL addie(1,1,3);
+CALL addie(2,2,1);
 
