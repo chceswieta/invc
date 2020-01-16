@@ -102,7 +102,7 @@ DELIMITER $$
 
 CREATE PROCEDURE gen(IN iId INT)
 BEGIN		
-	SELECT CONCAT(clientId, ' ', invoiceId, ' ', date, ' ', total) FROM invoice WHERE invoice.invoiceId = iId;
+	SELECT CONCAT(i.clientId, ' ', c.name, ' ', c.surname, ' ', date, ' ', total) FROM invoice i INNER JOIN client c ON c.clientId = i.clientId WHERE i.invoiceId = iId;
 END $$
 
 CREATE PROCEDURE num(IN user VARCHAR(20))

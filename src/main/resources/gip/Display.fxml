@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="gip.DisplayController"
-            prefHeight="700.0" prefWidth="500.0">
-    <Label alignment="CENTER" layoutY="30.0" style="&#10;" prefWidth="500.0"
-           text="Display an invoice" textAlignment="CENTER" textFill="dimgray" focusTraversable="true">
+<AnchorPane prefHeight="700.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gip.DisplayController">
+    <Label alignment="CENTER" focusTraversable="true" layoutY="30.0" prefWidth="500.0" style="&#10;" text="Display an invoice" textAlignment="CENTER" textFill="dimgray">
         <font>
-            <Font size="18.0"/>
+            <Font size="18.0" />
         </font>
     </Label>
-    <Label layoutY="80.0" prefHeight="25.0" prefWidth="500.0" text="Invoice ID:" textFill="dimgray"
-           alignment="CENTER"/>
-    <ChoiceBox fx:id="invoiceChoice" layoutX="165.0" layoutY="110.0" prefHeight="25.0" prefWidth="170.0" onAction="#display"/>
-    <Label fx:id="invoice_contents" alignment="CENTER" layoutX="50.0" layoutY="170.0" style="&#10;" prefHeight="500.0"
-           prefWidth="400.0"
-           text="invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice invoice "
-           textAlignment="CENTER" textFill="dimgray" wrapText="true"/>
+    <Label alignment="CENTER" layoutY="80.0" prefHeight="25.0" prefWidth="500.0" text="Invoice ID:" textFill="dimgray" />
+    <ChoiceBox fx:id="invoiceChoice" layoutX="165.0" layoutY="110.0" onAction="#display" prefHeight="25.0" prefWidth="170.0" />
+    <Label fx:id="client" layoutX="50.0" layoutY="150.0" prefHeight="25.0" prefWidth="400.0" style="&#10;" textFill="dimgray" wrapText="true" />
+    <Label fx:id="date" alignment="CENTER_RIGHT" layoutX="50.0" layoutY="150.0" prefHeight="25.0" prefWidth="400.0" style="&#10;" textAlignment="RIGHT" textFill="dimgray" wrapText="true" />
+    <TableView fx:id="invoice" layoutX="50.0" layoutY="190.0" prefHeight="450.0" prefWidth="400.0">
+        <columns>
+            <TableColumn fx:id="no" prefWidth="30.0" text="#" />
+            <TableColumn fx:id="productName" prefWidth="170.0" text="Product" />
+            <TableColumn fx:id="quantity" prefWidth="100.0" text="Quantity" />
+            <TableColumn fx:id="subtotal" prefWidth="100.0" text="Subtotal" />
+        </columns>
+    </TableView>
+    <Label fx:id="total" alignment="CENTER_RIGHT" layoutX="50.0" layoutY="650.0" prefHeight="25.0" prefWidth="400.0" text="Total: 0.00" textAlignment="RIGHT" textFill="dimgray" />
 </AnchorPane>
