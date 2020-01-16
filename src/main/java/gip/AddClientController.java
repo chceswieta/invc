@@ -35,7 +35,7 @@ public class AddClientController extends ResponseController {
             try {
                 Long.parseLong(nip.getText());
 
-                PreparedStatement preparedStatement = prepareStatement("INSERT INTO client VALUE (?, ?, ?, ?)");
+                PreparedStatement preparedStatement = prepareStatement("INSERT INTO client VALUE (?, ?, ?, ?, NULL)");
                 preparedStatement.setString(1, nip.getText());
                 preparedStatement.setString(2, name.getText());
                 preparedStatement.setString(3, surname.getText());
