@@ -2,6 +2,9 @@ package gip;
 
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
@@ -10,7 +13,14 @@ import java.sql.SQLException;
 
 public class DisplayController {
     public ChoiceBox<Integer> invoiceChoice;
-    public Label invoice_contents;
+    public Label client;
+    public Label date;
+    public Label total;
+    public TableView<InvoiceItem> invoice;
+    public TableColumn<InvoiceItem, Integer> no;
+    public TableColumn<InvoiceItem, String> productName;
+    public TableColumn<InvoiceItem, Integer> quantity;
+    public TableColumn<InvoiceItem, Double> subtotal;
 
     public void initialize() throws SQLException {
         ResultSet rs;
@@ -23,23 +33,57 @@ public class DisplayController {
         while (rs.next()) {
             invoiceChoice.getItems().add(rs.getInt(1));
         }
+
+        no.setCellValueFactory(new PropertyValueFactory<>("no"));
+        productName.setCellValueFactory(new PropertyValueFactory<>("productName"));
+        quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        subtotal.setCellValueFactory(new PropertyValueFactory<>("subtotal"));
     }
 
     public void display() {
         try {
+            invoice.getItems().clear();
             int chosenId = invoiceChoice.getValue();
-            StringBuilder invoice = new StringBuilder();
-            CallableStatement header = App.prepareCall("CALL gen(?)");
-            header.setInt(1, chosenId);
-            ResultSet rs = header.executeQuery();
-            while (rs.next()) invoice.append(rs.getString(1)).append("\n");
-            PreparedStatement body = App.prepareStatement("SELECT productName, iE.number FROM invoiceElement iE INNER JOIN product p ON iE.productId = p.productId WHERE invoiceId = ?");
+
+            CallableStatement hdr = App.prepareCall("CALL gen(?)");
+            hdr.setInt(1, chosenId);
+            ResultSet rs = hdr.executeQuery();
+            if (rs.next()) {
+                String[] header = rs.getString(1).split(" ");
+                client.setText(header[0]+", "+header[1]+" "+header[2]);
+                date.setText(header[3]);
+                total.setText("Total: "+header[4]);
+            }
+
+            PreparedStatement body = App.prepareStatement("SELECT productName, iE.number, iE.number * p.price FROM invoiceElement iE INNER JOIN product p ON iE.productId = p.productId WHERE invoiceId = ?");
             body.setInt(1, chosenId);
             rs = body.executeQuery();
-            while (rs.next()) invoice.append(rs.getString(1)).append(" ").append(rs.getString(2)).append("\n");
-            invoice_contents.setText(invoice.toString());
+            int count = 1;
+            while (rs.next()) {
+                invoice.getItems().add(new InvoiceItem(count++, rs.getString(1), rs.getInt(2), rs.getDouble(3)));
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public static class InvoiceItem {
+        int no;
+        String productName;
+        int quantity;
+        Double subtotal;
+
+        InvoiceItem (int no, String productName, int quantity, Double subtotal) {
+            this.no = no;
+            this.productName = productName;
+            this.quantity = quantity;
+            this.subtotal = subtotal;
+        }
+
+        public int getNo() { return no; }
+        public String getProductName() { return productName; }
+        public int getQuantity() { return quantity; }
+        public Double getSubtotal() { return subtotal; }
     }
 }
