@@ -20,6 +20,6 @@
            alignment="CENTER" />
     <ChoiceBox fx:id="product" layoutX="65.0" layoutY="190.0" prefHeight="25.0" prefWidth="170.0"/>
     <Button layoutX="65.0" layoutY="240.0" prefHeight="25.0" prefWidth="170.0" text="Remove" onAction="#removeItem"/>
-    <Label layoutX="45.0" layoutY="275.0" prefHeight="25.0" prefWidth="210.0" textFill="dimgray" textAlignment="CENTER"
+    <Label fx:id="info" layoutX="45.0" layoutY="275.0" prefHeight="25.0" prefWidth="210.0" textFill="dimgray" textAlignment="CENTER"
            alignment="CENTER" wrapText="true"/>
 </AnchorPane>

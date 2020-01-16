@@ -7,7 +7,9 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -52,7 +54,7 @@ public class MainController {
                     grantAccess("adminAccess");
                 else if (grants.contains("GRANT SELECT, UPDATE ON `invc`.`product`") && grants.contains("GRANT SELECT ON `invc`.`client`"))
                     grantAccess("employeeAccess");
-            } else if (grants.contains("GRANT SELECT ON `invc`.`invoiceElement`") && grants.contains("GRANT EXECUTE ON PROCEDURE `invc`.`gen`")) grantAccess("clientAccess");
+            } else if (grants.contains("GRANT SELECT ON `invc`.`invoiceElement`") && grants.contains("GRANT EXECUTE ON PROCEDURE `invc`.`gen`") && grants.contains("GRANT EXECUTE ON PROCEDURE `invc`.`num`")) grantAccess("clientAccess");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -69,7 +71,16 @@ public class MainController {
         }
     }
 
+    public void backup() {
+        Alert ok = new Alert(Alert.AlertType.INFORMATION);
+        ok.setTitle("Backup");
+        ok.setHeaderText("Success");
+        ok.setContentText("Done");
+        ok.showAndWait();
+    }
+
     public void grantAccess(String accessLevel) {
+        if (!accessLevel.equals("clientAccess")) App.setAllInvoicesAvailable(true);
         LinkedList<Node> buttonGroup = new LinkedList<>();
         switch (accessLevel) {
             case "adminAccess":

@@ -28,7 +28,7 @@ public class AddItemController extends ProductListController {
                     ResultSet rs = executeQuery("SELECT MAX(invoiceId) FROM invoice");
                     int newId = rs.next() ? rs.getInt(1) + 1 : 0;
                     Long.parseLong(nip.getText());
-                    executeUpdate("INSERT INTO invoice VALUE ("+newId+", "+nip.getText()+", CURDATE(), 0)");
+                    executeUpdate("INSERT INTO invoice VALUE ("+newId+", '"+nip.getText()+"', CURDATE(), 0)");
                     nip.clear();
                     invoiceId.setText(String.valueOf(newId));
                     setInfo("Your new invoice has been generated.", false);
@@ -51,6 +51,8 @@ public class AddItemController extends ProductListController {
                 callStatement.setInt(3, quantity.getValue());
                 callStatement.executeQuery();
                 setInfo("Done.", false);
+                nip.clear();
+                invoiceId.clear();
             } catch (SQLException e) {
                 if (e.getMessage().contains("foreign key")) {
                     redFocus(invoiceId);

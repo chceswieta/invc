@@ -13,6 +13,16 @@ import java.io.IOException;
 public class App extends Application {
     private static Scene scene;
     private static Connection connection;
+    private static String username;
+    private static boolean allInvoicesAvailable = false;
+
+    public static void setAllInvoicesAvailable(boolean b) {
+        allInvoicesAvailable = b;
+    }
+
+    public static boolean getAllInvoicesAvailable() {
+        return allInvoicesAvailable;
+    }
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -37,6 +47,14 @@ public class App extends Application {
 
     public static void endConnection() throws SQLException {
         connection.close();
+    }
+
+    public static void setUsername(String name) {
+        username = name;
+    }
+
+    public static String getUsername() {
+        return username;
     }
 
     public static ResultSet executeQuery(String query) throws SQLException {
