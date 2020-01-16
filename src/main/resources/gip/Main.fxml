@@ -51,9 +51,13 @@
             <Button id="Backup" layoutX="65.0" layoutY="365.0" prefHeight="25.0" prefWidth="170.0"
                     mnemonicParsing="false"
                     text="Backup" disable="true" onAction="#backup"/>
+                    
+            <Button id="Restore" layoutX="65.0" layoutY="400.0" prefHeight="25.0" prefWidth="170.0"
+                    mnemonicParsing="false"
+                    text="Restore" disable="true" onAction="#restore"/>
         </Group>
 
-        <Button layoutX="65.0" layoutY="410.0" prefHeight="25.0" prefWidth="170.0" mnemonicParsing="false"
+        <Button layoutX="65.0" layoutY="440.0" prefHeight="25.0" prefWidth="170.0" mnemonicParsing="false"
                 text="Log out" onAction="#logout"/>
     </AnchorPane>
 </VBox>
