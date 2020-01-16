@@ -16,10 +16,10 @@ public class LoginController {
     @FXML
     private void login() throws IOException {
         try {
-            //App.attemptConnection(user.getText(), password.getText());
-            //App.setUsername(user.getText());
-            App.attemptConnection("invClient","cpassword");
-            App.setUsername("invClient");
+            App.attemptConnection(user.getText(), password.getText());
+            App.setUsername(user.getText());
+            //App.attemptConnection("invClient","cpassword");
+            //App.setUsername("invClient");
             //App.attemptConnection("invAdmin","apassword");
             //App.setUsername("invAdmin");
             App.setRoot("Main");

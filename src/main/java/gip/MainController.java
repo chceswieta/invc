@@ -48,13 +48,13 @@ public class MainController {
                 grant = rs.getString(1).split(" TO ")[0];
                 grants.add(grant);
             }
-            boolean moreThanClientAccess = grants.contains("GRANT SELECT, INSERT, UPDATE, DELETE ON `invc`.`invoice`") && grants.contains("GRANT SELECT, INSERT, UPDATE, DELETE ON `invc`.`invoiceElement`") && grants.contains("GRANT EXECUTE ON `invc`.*");
+            boolean moreThanClientAccess = grants.contains("GRANT SELECT, INSERT, UPDATE, DELETE ON `invc`.`invoice`") && grants.contains("GRANT SELECT, INSERT, UPDATE, DELETE ON `invc`.`invoiceElement`");
             if (moreThanClientAccess) {
-                if (grants.contains("GRANT SELECT, INSERT, UPDATE, DELETE ON `invc`.`client`") && grants.contains("GRANT SELECT, INSERT, UPDATE, DELETE ON `invc`.`product`"))
+                if (grants.contains("GRANT SELECT, INSERT, UPDATE, DELETE ON `invc`.`client`") && grants.contains("GRANT SELECT, INSERT, UPDATE, DELETE ON `invc`.`product`") && grants.contains("GRANT LOCK TABLES, EXECUTE ON `invc`.*"))
                     grantAccess("adminAccess");
-                else if (grants.contains("GRANT SELECT, UPDATE ON `invc`.`product`") && grants.contains("GRANT SELECT ON `invc`.`client`"))
+                else if (grants.contains("GRANT SELECT, UPDATE ON `invc`.`product`") && grants.contains("GRANT SELECT ON `invc`.`client`") && grants.contains("GRANT EXECUTE ON `invc`.*"))
                     grantAccess("employeeAccess");
-            } else if (grants.contains("GRANT SELECT ON `invc`.`invoiceElement`") && grants.contains("GRANT EXECUTE ON PROCEDURE `invc`.`gen`") && grants.contains("GRANT EXECUTE ON PROCEDURE `invc`.`num`")) grantAccess("clientAccess");
+            } else if (grants.contains("GRANT SELECT ON `invc`.`invoiceElement`") && grants.contains("GRANT SELECT ON `invc`.`product`") && grants.contains("GRANT EXECUTE ON PROCEDURE `invc`.`gen`") && grants.contains("GRANT EXECUTE ON PROCEDURE `invc`.`num`")) grantAccess("clientAccess");
 
         } catch (SQLException e) {
             e.printStackTrace();

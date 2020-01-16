@@ -191,7 +191,7 @@ GRANT SELECT, INSERT, DELETE, UPDATE ON invc.invoice TO 'invAdmin'@'localhost';
 GRANT SELECT, INSERT, DELETE, UPDATE ON invc.invoiceElement TO 'invAdmin'@'localhost';
 GRANT SELECT, INSERT, DELETE, UPDATE ON invc.client TO 'invAdmin'@'localhost';
 GRANT SELECT, INSERT, DELETE, UPDATE ON invc.product TO 'invAdmin'@'localhost';
-GRANT EXECUTE ON invc.* TO 'invAdmin'@'localhost';
+GRANT LOCK TABLES, EXECUTE ON invc.* TO 'invAdmin'@'localhost';
 
 INSERT INTO client VALUE ('9910101234','Gabi','Wechta','1999-10-10', 'invClient');
 INSERT INTO client VALUE ('9910101235','Patryk','Majewski','1999-10-10', null);
