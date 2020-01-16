@@ -51,6 +51,8 @@ public class AddItemController extends ProductListController {
                 callStatement.setInt(3, quantity.getValue());
                 callStatement.executeQuery();
                 setInfo("Done.", false);
+                nip.clear();
+                invoiceId.clear();
             } catch (SQLException e) {
                 if (e.getMessage().contains("foreign key")) {
                     redFocus(invoiceId);
