@@ -92,7 +92,6 @@ DELIMITER ;
 
 ###################################PROCEDURES###################################
 
-
 DROP PROCEDURE IF EXISTS gen;
 DROP PROCEDURE IF EXISTS num;
 DROP PROCEDURE IF EXISTS addie;
@@ -187,7 +186,6 @@ GRANT SELECT, INSERT, DELETE, UPDATE ON invc.invoiceElement TO 'invEmployee'@'lo
 GRANT SELECT, UPDATE ON invc.product TO 'invEmployee'@'localhost';
 GRANT EXECUTE ON invc.* TO 'invEmployee'@'localhost';
 
-GRANT SELECT, LOCK TABLES ON invc.* TO 'invAdmin'@'localhost';
 GRANT SELECT, INSERT, DELETE, UPDATE ON invc.invoice TO 'invAdmin'@'localhost';
 GRANT SELECT, INSERT, DELETE, UPDATE ON invc.invoiceElement TO 'invAdmin'@'localhost';
 GRANT SELECT, INSERT, DELETE, UPDATE ON invc.client TO 'invAdmin'@'localhost';
