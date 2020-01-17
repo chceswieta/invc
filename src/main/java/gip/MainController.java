@@ -16,14 +16,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.stage.DirectoryChooser;
+
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.LinkedList;
 
 public class MainController {
 	public Group clientAccess;
@@ -83,7 +78,6 @@ public class MainController {
     	processBuilder.command("bash", "-c", "mysqldump -u root invc > src/main/backupFileHere.sql");
 
     	try {
-
     		Process process = processBuilder.start();
 
     		StringBuilder output = new StringBuilder();
@@ -104,13 +98,11 @@ public class MainController {
     			//abnormal...
     		}
 
-    	} catch (IOException e) {
-    		e.printStackTrace();
-    	} catch (InterruptedException e) {
+    	} catch (IOException | InterruptedException e) {
     		e.printStackTrace();
     	}
 
-        Alert ok = new Alert(Alert.AlertType.INFORMATION);
+		Alert ok = new Alert(Alert.AlertType.INFORMATION);
         ok.setTitle("Backup");
         ok.setHeaderText("Success");
         ok.setContentText("Done");

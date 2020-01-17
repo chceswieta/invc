@@ -51,8 +51,7 @@
             <Button id="Backup" layoutX="65.0" layoutY="365.0" prefHeight="25.0" prefWidth="170.0"
                     mnemonicParsing="false"
                     text="Backup" disable="true" onAction="#backup"/>
-                    
-            <Button id="Restore" layoutX="65.0" layoutY="400.0" prefHeight="25.0" prefWidth="170.0"
+            <Button id="Restore" layoutX="65.0" layoutY="395.0" prefHeight="25.0" prefWidth="170.0"
                     mnemonicParsing="false"
                     text="Restore" disable="true" onAction="#restore"/>
         </Group>
